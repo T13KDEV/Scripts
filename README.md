@@ -1,2 +1,2 @@
 # Scripts
-Distribution point for usefull scripts used in other Repositories.
+Distribution point for scripts and other resources used in other Repositories.
