@@ -1,2 +1,2 @@
 # Scripts
-Usefull scripts used in other Repos
+Distribution point for usefull scripts used in other Repositories.
