@@ -1,0 +1,4 @@
+# startup.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "[Net.ServicePointManager]::SecurityProtocol = 'Tls12'; iex ((New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/T13KDEV/Scripts/main/powershell/optimize-powershell-assemblies.ps1'))"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "[Net.ServicePointManager]::SecurityProtocol = 'Tls12'; iex ((New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/T13KDEV/Scripts/main/powershell/Install_Preparation_OpenSSH.ps1'))"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "[Net.ServicePointManager]::SecurityProtocol = 'Tls12'; iex ((New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/T13KDEV/Scripts/main/powershell/Install_PS_Core.ps1'))"
