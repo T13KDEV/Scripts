@@ -19,6 +19,9 @@ Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-E
 # Install MS-SQL Express 
 & C:\ProgramData\chocolatey\choco.exe install sql-server-express -y
 
+# Install Management Studio
+& C:\ProgramData\chocolatey\choco.exe install sql-server-management-studio -y
+
 # Join Machine to Domain and restart
 Start-Sleep -s 30
 $password = "tkmdLpu4d9WOg0ygXq17" | ConvertTo-SecureString -asPlainText -Force
