@@ -12,7 +12,6 @@ Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-E
 Start-Sleep -Seconds 30
 
 # Join Machine to Domain and restart
-Start-Sleep -s 30
 $password = "tkmdLpu4d9WOg0ygXq17" | ConvertTo-SecureString -asPlainText -Force
 $username = "licdemo\domjoin"
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
