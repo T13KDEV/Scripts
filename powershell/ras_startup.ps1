@@ -38,6 +38,7 @@ Invoke-WebRequest "https://datablob.oss.eu-west-0.prod-cloud-ocb.orange-business
 Invoke-WebRequest "https://datablob.oss.eu-west-0.prod-cloud-ocb.orange-business.com/LayoutModification.xml" -Outfile "C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml"
 
 Copy-Item -Path "C:\Temp\Abmelden.lnk" -Destination "C:\Users\Public\Desktop"
+Remove-Item -Path "C:\Temp\Abmelden.lnk" -Force
 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Bags\1\Desktop" -Name "FFlags" -Value 1075839525
 stop-process -name explorer -force
