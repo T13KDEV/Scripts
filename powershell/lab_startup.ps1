@@ -24,7 +24,7 @@ Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-E
 
 # Join Machine to Domain and restart
 Start-Sleep -s 30
-$password = "tkmdLpu4d9WOg0ygXq17" | ConvertTo-SecureString -asPlainText -Force
-$username = "training\domjoin"
+$password = "xxxxxx" | ConvertTo-SecureString -asPlainText -Force
+$username = "training\xxxxxx"
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 Add-Computer -DomainName "training.local" -OUPath "OU=Students,OU=Training,DC=training,DC=local" -Credential $credential -Restart

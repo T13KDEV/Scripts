@@ -57,7 +57,7 @@ stop-process -name explorer –force
 
 # Join Machine to Domain and restart
 Start-Sleep -s 30
-$password = "tkmdLpu4d9WOg0ygXq17" | ConvertTo-SecureString -asPlainText -Force
-$username = "licdemo\domjoin"
+$password = "xxxxx" | ConvertTo-SecureString -asPlainText -Force
+$username = "licdemo\xxxx"
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 Add-Computer -DomainName "licdemo.local" -OUPath "OU=NewJoined,OU=Computer,OU=Tier2,OU=LICDEMO,DC=licdemo,DC=local" -Credential $credential -Restart
