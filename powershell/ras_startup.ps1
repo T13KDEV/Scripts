@@ -2,21 +2,10 @@
 [Net.ServicePointManager]::SecurityProtocol = 'Tls12'
 
 # Create base folder
-if (!(Test-Path "C:\Install")) {
-    New-Item -itemType Directory -Path C:\ -Name Install
-    }
-
 if (!(Test-Path "C:\Temp")) {
         New-Item -itemType Directory -Path C:\ -Name Temp
         }
         
-# Install Evergreen and applications
-# Invoke-WebRequest "https://raw.githubusercontent.com/Deyda/Evergreen-Script/main/Evergreen.ps1" -OutFile "C:\Install\Evergreen.ps1" 
-# Invoke-WebRequest "https://raw.githubusercontent.com/T13KDEV/Scripts/devel/config/LastSetting.txt" -OutFile "C:\Install\LastSetting.txt"
-# Powershell.exe -NoProfile -ExecutionPolicy Bypass -Command C:\Install\Evergreen.ps1 -file C:\Install\LastSetting.txt
-
-# Start-Sleep -Seconds 30
-
 # Install Chocolatey
 Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
 
@@ -37,23 +26,22 @@ Start-Sleep -Seconds 30
 & dism /online /Import-DefaultAppAssociations:%TMP%\AppAssoc.xml
 
 # Prepare User Desktop
-Remove-Item 'C:\Users\Public\Desktop\Command Prompt.lnk' -Force
-Remove-Item 'C:\Users\Public\Desktop\Disk Management.lnk' -Force
-Remove-Item 'C:\Users\Public\Desktop\Google Chrome.lnk' -Force
-Remove-Item 'C:\Users\Public\Desktop\Internet Explorer.lnk' -Force
-Remove-Item 'C:\Users\Public\Desktop\Microsoft Edge.lnk' -Force
+if (Test-Path 'C:\Users\Public\Desktop\Command Prompt.lnk') { Remove-Item 'C:\Users\Public\Desktop\Command Prompt.lnk' -Force }
+if (Test-Path 'C:\Users\Public\Desktop\Disk Management.lnk') { Remove-Item 'C:\Users\Public\Desktop\Disk Management.lnk' -Force }
+if (Test-Path 'C:\Users\Public\Desktop\Google Chrome.lnk') { Remove-Item 'C:\Users\Public\Desktop\Google Chrome.lnk' -Force }
+if (Test-Path 'C:\Users\Public\Desktop\Internet Explorer.lnk') { Remove-Item 'C:\Users\Public\Desktop\Internet Explorer.lnk' -Force }
+if (Test-Path 'C:\Users\Public\Desktop\Microsoft Edge.lnk') { Remove-Item 'C:\Users\Public\Desktop\Microsoft Edge.lnk' -Force }
 
-New-PSDrive -Name "Sources" -PSProvider "FileSystem" -Root "\\lic-wfs-1\Sources"
+Invoke-WebRequest "https://datablob.oss.eu-west-0.prod-cloud-ocb.orange-business.com/Abmelden.ico" -Outfile "C:\Temp\Abmelden.ico"
+Invoke-WebRequest "https://datablob.oss.eu-west-0.prod-cloud-ocb.orange-business.com/Abmelden.cmd" -Outfile "C:\Temp\Abmelden.cmd"
+Invoke-WebRequest "https://datablob.oss.eu-west-0.prod-cloud-ocb.orange-business.com/Abmelden.lnk" -Outfile "C:\Temp\Abmelden.lnk"
+Invoke-WebRequest "https://datablob.oss.eu-west-0.prod-cloud-ocb.orange-business.com/LayoutModification.xml" -Outfile "C:\Users\Default\AppData\Local\Microsoft\Windows\Shell\LayoutModification.xml"
 
-Copy-Item -Path Sources:\Abmelden\Abmelden.cmd -Destination C:\Temp
-Copy-Item -Path Sources:\Abmelden\Abmelden.ico -Destination C:\Temp
-Copy-Item -Path Sources:\Abmelden\Abmelden.lnk -Destination C:\Users\Public\Desktop
-Copy-Item -Path Sources:\LayoutModification.xml -Destination C:\Users\Default\AppData\Local\Microsoft\Windows\Shell
-
-Remove-PSDrive -Name "Sources"
+Copy-Item -Path "C:\Temp\Abmelden.lnk" -Destination "C:\Users\Public\Desktop"
+Remove-Item -Path "C:\Temp\Abmelden.lnk" -Force
 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Bags\1\Desktop" -Name "FFlags" -Value 1075839525
-stop-process -name explorer –force
+stop-process -name explorer -force
 
 # Join Machine to Domain and restart
 Start-Sleep -s 30
@@ -61,3 +49,4 @@ $password = "xxxxx" | ConvertTo-SecureString -asPlainText -Force
 $username = "licdemo\xxxx"
 $credential = New-Object System.Management.Automation.PSCredential($username,$password)
 Add-Computer -DomainName "licdemo.local" -OUPath "OU=NewJoined,OU=Computer,OU=Tier2,OU=LICDEMO,DC=licdemo,DC=local" -Credential $credential -Restart
+
