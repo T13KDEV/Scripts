@@ -53,7 +53,7 @@ Copy-Item -Path Sources:\LayoutModification.xml -Destination C:\Users\Default\Ap
 Remove-PSDrive -Name "Sources"
 
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\Shell\Bags\1\Desktop" -Name "FFlags" -Value 1075839525
-stop-process -name explorer –force
+stop-process -name explorer -force
 
 # Join Machine to Domain and restart
 Start-Sleep -s 30
