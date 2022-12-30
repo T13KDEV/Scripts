@@ -15,6 +15,9 @@ Invoke-WebRequest "https://chocolatey.org/install.ps1" -UseBasicParsing | Invoke
 
 Start-Sleep -Seconds 30
 
+# Optimize System
+Invoke-Expression ((New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/T13KDEV/Scripts/main/powershell/optimize-powershell-assemblies.ps1'))
+
 & dism /online /Export-DefaultAppAssociations:%TMP%\AppAssoc.xml  
 & dism /online /Import-DefaultAppAssociations:%TMP%\AppAssoc.xml
 
