@@ -7,18 +7,11 @@ if (!(Test-Path "C:\Temp")) {
         }
         
 # Install Chocolatey
-Invoke-WebRequest https://chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
+Invoke-WebRequest "https://raw.githubusercontent.com/T13KDEV/Scripts/devel/powershell/packages.config" -OutFile "C:\Temp\packages.config"
+Invoke-WebRequest "https://chocolatey.org/install.ps1" -UseBasicParsing | Invoke-Expression
 
 # Install Choco Applications
-& C:\ProgramData\chocolatey\choco.exe install powershell-core -y
-& C:\ProgramData\chocolatey\choco.exe install googlechrome -y
-& C:\ProgramData\chocolatey\choco.exe install irfanview -y
-& C:\ProgramData\chocolatey\choco.exe install irfanview-shellextension -y
-& C:\ProgramData\chocolatey\choco.exe install irfanviewplugins -y
-& C:\ProgramData\chocolatey\choco.exe install notepadplusplus.install -y
-& C:\ProgramData\chocolatey\choco.exe install 7zip.install -y
-& C:\ProgramData\chocolatey\choco.exe install microsoft-edge -y
-& C:\ProgramData\chocolatey\choco.exe install freeoffice -y
+& C:\ProgramData\chocolatey\choco.exe install --confirm c:\Temp\packages.config
 
 Start-Sleep -Seconds 30
 
